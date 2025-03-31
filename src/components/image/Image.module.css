@@ -1,0 +1,16 @@
+#imageHolder {
+  position: relative;
+  width: min-content;
+  height: min-content;
+}
+
+#imageHolder img {
+  display: block;
+}
+
+#selection {
+  box-sizing: border-box;
+  border: 3px solid red;
+  position: absolute;
+  pointer-events: none;
+}
