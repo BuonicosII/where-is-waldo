@@ -1,11 +1,14 @@
 #imageHolder {
   position: relative;
-  width: min-content;
+  width: 100%;
   height: min-content;
+  max-width: 2000px;
+  min-width: 1024px;
 }
 
 #imageHolder img {
   display: block;
+  width: 100%;
 }
 
 #selection {

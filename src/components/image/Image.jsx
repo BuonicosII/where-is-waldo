@@ -7,8 +7,8 @@ export default function Image() {
   const [size, getSize] = useState([]);
 
   function coordinates(e) {
-    getX(e.nativeEvent.offsetX);
-    getY(e.nativeEvent.offsetY);
+    getX(x ? null : e.nativeEvent.offsetX);
+    getY(y ? null : e.nativeEvent.offsetY);
     getSize([
       document.getElementById(`${style.imageHolder}`).scrollWidth,
       document.getElementById(`${style.imageHolder}`).scrollHeight,
@@ -35,9 +35,6 @@ export default function Image() {
           ></div>
         )}
       </div>
-      <p>
-        {x} e {y}
-      </p>
     </main>
   );
 }
