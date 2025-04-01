@@ -10,10 +10,3 @@
   display: block;
   width: 100%;
 }
-
-#selection {
-  box-sizing: border-box;
-  border: 3px solid red;
-  position: absolute;
-  pointer-events: none;
-}

@@ -1,0 +1,23 @@
+#selectorHolder {
+  position: absolute;
+  display: flex;
+  pointer-events: none;
+  gap: 5px;
+}
+
+#selection {
+  box-sizing: border-box;
+  border: 3px solid red;
+}
+
+#options {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  pointer-events: auto;
+}
+
+.imgButton {
+  box-sizing: border-box;
+  border: 3px solid green;
+}
