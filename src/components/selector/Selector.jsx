@@ -7,6 +7,17 @@ export default function Selector({ x, y, size }) {
 
   function formSubmit(e) {
     e.preventDefault();
+
+    const userSelection = {
+      subject: button,
+      minY: y - size[1] / 20,
+      minX: x - size[1] / 20,
+      maxY: y + size[1] / 20,
+      maxX: x + size[1] / 20,
+      sizeY: size[1],
+      sizeX: size[0],
+    };
+    console.log(userSelection);
   }
 
   return (
@@ -24,7 +35,7 @@ export default function Selector({ x, y, size }) {
           height: `${size[1] / 10}px`,
         }}
       ></div>
-      <form action="" id={style.options}>
+      <form action="" id={style.options} onSubmit={formSubmit}>
         <button
           className={style.imgButton}
           onClick={() => {
