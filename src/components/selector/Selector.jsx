@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function Selector({ x, y, size, spotted, setSpotted }) {
   const [button, setButton] = useState(null);
 
-  function formSubmit(e) {
+  async function formSubmit(e) {
     e.preventDefault();
 
     const userSelection = {
@@ -18,6 +18,30 @@ export default function Selector({ x, y, size, spotted, setSpotted }) {
       sizeX: size[0],
     };
     console.log(userSelection);
+
+    try {
+      const json = await fetch("http://localhost:3000/", {
+        method: "POST",
+        body: JSON.stringify(userSelection),
+      });
+
+      const res = await json.json();
+
+      if (!res.found) {
+        setSpotted({ ...spotted });
+      } else {
+        if (res.subject === 1) {
+          setSpotted({ ...spotted, one: [res.x, res.y] });
+        } else if (res.subject === 2) {
+          setSpotted({ ...spotted, two: [res.x, res.y] });
+        } else if (res.subject === 3) {
+          setSpotted({ ...spotted, three: [res.x, res.y] });
+        }
+        setButton(null);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
