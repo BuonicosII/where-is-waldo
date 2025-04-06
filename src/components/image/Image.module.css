@@ -10,3 +10,10 @@
   display: block;
   width: 100%;
 }
+
+.spottedDiv {
+  box-sizing: border-box;
+  border: 5px solid rgb(0, 160, 0);
+  position: absolute;
+  pointer-events: none;
+}

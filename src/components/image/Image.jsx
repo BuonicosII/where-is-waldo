@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./Image.module.css";
 import Selector from "../selector/Selector";
 
@@ -6,6 +6,28 @@ export default function Image() {
   const [x, getX] = useState(null);
   const [y, getY] = useState(null);
   const [size, getSize] = useState([]);
+  const [spotted, setSpotted] = useState({
+    one: [],
+    two: [],
+    three: [],
+  });
+
+  //mettere useMediaQuery e/o useEffect per far beccare al componente quando cambiano le dimensioni
+
+  useEffect(() => {
+    function handleResize() {
+      const height = document.getElementById(
+        `${style.imageHolder}`
+      ).scrollHeight;
+      const width = document.getElementById(`${style.imageHolder}`).scrollWidth;
+      getSize([width, height]);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   function coordinates(e) {
     getX(x ? null : e.nativeEvent.offsetX);
@@ -24,7 +46,28 @@ export default function Image() {
           src="https://upload.wikimedia.org/wikipedia/commons/0/07/Procesi%C3%B3n_de_Pascua_en_la_regi%C3%B3n_de_Kursk%2C_por_Ili%C3%A1_Repin.jpg"
           alt=""
         />
-        {y !== null && x !== null && <Selector x={x} y={y} size={size} />}
+        {y !== null && x !== null && (
+          <Selector
+            x={x}
+            y={y}
+            size={size}
+            spotted={spotted}
+            setSpotted={setSpotted}
+          />
+        )}
+        {spotted.one.length === 2 && (
+          <div
+            style={{
+              left: `${
+                ((spotted.one[0] - size[1] / 20) * size[1]) / 1235.35
+              }px`,
+              top: `${((spotted.one[1] - size[1] / 20) * size[0]) / 2000}px`,
+              width: `${size[1] / 10}px`,
+              height: `${size[1] / 10}px`,
+            }}
+            className={style.spottedDiv}
+          ></div>
+        )}
       </div>
     </main>
   );

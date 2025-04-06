@@ -2,7 +2,7 @@ import style from "./Selector.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-export default function Selector({ x, y, size }) {
+export default function Selector({ x, y, size, spotted, setSpotted }) {
   const [button, setButton] = useState(null);
 
   function formSubmit(e) {
