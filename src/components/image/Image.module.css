@@ -18,6 +18,6 @@
   pointer-events: none;
 }
 
-.main {
+main {
   overflow: scroll;
 }

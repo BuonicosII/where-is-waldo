@@ -7,12 +7,17 @@ export default function Image() {
   const [y, getY] = useState(null);
   const [size, getSize] = useState([]);
   const [spotted, setSpotted] = useState({
-    one: [],
+    one: [450, 450],
     two: [],
     three: [],
   });
 
   //mettere useMediaQuery e/o useEffect per far beccare al componente quando cambiano le dimensioni
+  useEffect(() => {
+    const height = document.getElementById(`${style.imageHolder}`).scrollHeight;
+    const width = document.getElementById(`${style.imageHolder}`).scrollWidth;
+    getSize([width, height]);
+  }, []);
 
   useEffect(() => {
     function handleResize() {
@@ -64,10 +69,8 @@ export default function Image() {
         {spotted.one.length === 2 && (
           <div
             style={{
-              left: `${
-                ((spotted.one[0] - size[1] / 20) * size[1]) / 1235.35
-              }px`,
-              top: `${((spotted.one[1] - size[1] / 20) * size[0]) / 2000}px`,
+              left: `${(spotted.one[0] * size[0]) / 2000 - size[1] / 20}px`,
+              top: `${(spotted.one[1] * size[1]) / 1235.35 - size[1] / 20}px`,
               width: `${size[1] / 10}px`,
               height: `${size[1] / 10}px`,
             }}
