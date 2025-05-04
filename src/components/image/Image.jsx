@@ -20,6 +20,12 @@ export default function Image() {
         `${style.imageHolder}`
       ).scrollHeight;
       const width = document.getElementById(`${style.imageHolder}`).scrollWidth;
+      if (x) {
+        getX((x * width) / size[0]);
+      }
+      if (y) {
+        getY((y * height) / size[1]);
+      }
       getSize([width, height]);
     }
 
