@@ -4,6 +4,7 @@
   height: min-content;
   max-width: 2000px;
   min-width: 1024px;
+  margin: 0 auto;
 }
 
 #imageHolder img {
