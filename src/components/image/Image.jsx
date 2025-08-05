@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import style from "./Image.module.css";
 import Selector from "../selector/Selector";
+import { Link } from "react-router-dom";
 
 export default function Image() {
   const [x, getX] = useState(null);
@@ -78,6 +79,18 @@ export default function Image() {
           ></div>
         )}
       </div>
+      {spotted.one.length === 2 &&
+        spotted.two.length === 2 &&
+        spotted.three.length === 2 && (
+          <div className={style.gameover}>
+            <div>
+              <h1>GAME OVER</h1>
+              <Link to="/finish">
+                <span>See score</span>
+              </Link>
+            </div>
+          </div>
+        )}
     </main>
   );
 }
