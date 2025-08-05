@@ -35,3 +35,28 @@ main {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.219);
 }
+
+.gameover h1 {
+  font-size: 5vh;
+  font-weight: bold;
+  color: red;
+}
+
+.gameover div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 2vh;
+  gap: 2vh;
+}
+
+.gameover button {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  height: 2vh;
+}

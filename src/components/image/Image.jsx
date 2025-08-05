@@ -9,8 +9,8 @@ export default function Image() {
   const [size, getSize] = useState([]);
   const [spotted, setSpotted] = useState({
     one: [450, 450],
-    two: [],
-    three: [],
+    two: [450, 450],
+    three: [450, 450],
   });
 
   //mettere useMediaQuery e/o useEffect per far beccare al componente quando cambiano le dimensioni
@@ -86,7 +86,7 @@ export default function Image() {
             <div>
               <h1>GAME OVER</h1>
               <Link to="/finish">
-                <span>See score</span>
+                <button>See score</button>
               </Link>
             </div>
           </div>
