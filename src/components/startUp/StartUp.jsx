@@ -15,15 +15,15 @@ export default function StartUp() {
   }
 
   return (
-    <main>
-      <div>
+    <main id={style.mainDiv}>
+      <div className={style.description}>
         <h1>WHERE'S WALDO?</h1>
         <p>Rules: find the three characters as fast as possibile.</p>
         <p>
           Click on the image to ping a location and open the character selector.
         </p>
         <p>Select the character you think you have found from the selector.</p>
-        <div>
+        <div className={style.buttonHolder}>
           <button
             onClick={() => {
               setOpen(true);
@@ -36,29 +36,31 @@ export default function StartUp() {
       </div>
       {open && (
         <div className={style.gamestart}>
-          <form onSubmit={startNewGame} id="newgame">
-            <div>
-              <label htmlFor="">Enter a name:</label>
-              <input
-                onChange={inputUpdate}
-                type="text"
-                id="name"
-                name="name"
-                value={name}
-              />
+          <div className={style.popup}>
+            <form onSubmit={startNewGame} id="newgame">
+              <div className={style.inputHolder}>
+                <label htmlFor="">Enter a name:</label>
+                <input
+                  onChange={inputUpdate}
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={name}
+                />
+              </div>
+            </form>
+            <div className={style.buttonHolder}>
+              <button type="submit" form="newgame">
+                Start
+              </button>
+              <button
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                Cancel
+              </button>
             </div>
-          </form>
-          <div>
-            <button type="submit" form="newgame">
-              Start
-            </button>
-            <button
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              Cancel
-            </button>
           </div>
         </div>
       )}
