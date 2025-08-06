@@ -19,7 +19,7 @@
   pointer-events: none;
 }
 
-main {
+#mainImg {
   overflow: scroll;
 }
 

@@ -51,7 +51,7 @@ export default function Image() {
   }
 
   return (
-    <main>
+    <main id={style.mainImg}>
       <div id={style.imageHolder}>
         <img
           onMouseDown={coordinates}

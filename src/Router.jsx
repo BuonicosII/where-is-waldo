@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import Image from "./components/image/Image";
+import StartUp from "./components/startUp/StartUp";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -12,7 +13,7 @@ export default function Router() {
       path: "/",
       element: (
         <>
-          <p>start game</p>
+          <StartUp />
         </>
       ),
     },
