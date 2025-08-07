@@ -8,9 +8,9 @@ export default function Image() {
   const [y, getY] = useState(null);
   const [size, getSize] = useState([]);
   const [spotted, setSpotted] = useState({
-    one: [450, 450],
-    two: [450, 450],
-    three: [450, 450],
+    one: [],
+    two: [],
+    three: [],
   });
 
   //mettere useMediaQuery e/o useEffect per far beccare al componente quando cambiano le dimensioni
