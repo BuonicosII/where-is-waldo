@@ -1,8 +1,4 @@
-import {
-  createBrowserRouter,
-  redirect,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Image from "./components/image/Image";
 import StartUp from "./components/startUp/StartUp";
