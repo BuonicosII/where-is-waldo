@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Image from "./components/image/Image";
 import StartUp from "./components/startUp/StartUp";
+import Timer from "./components/timer/Timer";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -18,6 +19,7 @@ export default function Router() {
       element: (
         <>
           <Image />
+          <Timer />
         </>
       ),
     },
