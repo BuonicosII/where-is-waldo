@@ -1,20 +1,23 @@
 import style from "./Timer.module.css";
+import PropTypes from "prop-types";
 import { DateTime, Duration } from "luxon";
 import { useState, useEffect } from "react";
 
-export default function Timer() {
+export default function Timer({ gameover, setGameover }) {
   const [time, setTime] = useState(850);
 
   useEffect(() => {
     const interval = setTimeout(() => {
       console.log(time);
-      if (time < 900) {
+      if (!gameover && time < 900) {
         setTime(time + 1);
+      } else if (!gameover && time === 900) {
+        setGameover(new Date());
       }
     }, 1000);
 
     return () => clearTimeout(interval);
-  }, [time]);
+  }, [time, gameover]);
 
   return (
     <>
@@ -25,3 +28,8 @@ export default function Timer() {
     </>
   );
 }
+
+Timer.propTypes = {
+  gameover: PropTypes.Date,
+  setGameover: PropTypes.func,
+};

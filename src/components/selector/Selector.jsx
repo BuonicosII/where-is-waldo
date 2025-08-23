@@ -18,7 +18,7 @@ export default function Selector({ x, y, size, spotted, setSpotted }) {
       maxY: ((y + size[1] / 20) * 1235.35) / size[1],
       maxX: ((x + size[1] / 20) * 2000) / size[0],
     };
-    console.log(userSelection);
+
     try {
       const json = await fetch("http://localhost:3000/", {
         method: "POST",
