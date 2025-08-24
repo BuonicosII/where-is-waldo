@@ -1,0 +1,14 @@
+.timerHolder {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 121, 0, 0.5);
+}
+
+.timer {
+  background-color: white;
+  margin: 10px;
+  font-size: 45px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+}

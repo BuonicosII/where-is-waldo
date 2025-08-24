@@ -27,6 +27,8 @@ export default function Selector({ x, y, size, spotted, setSpotted }) {
 
       const res = await json.json();
 
+      //const res = { found: true, subject: button };
+
       if (!res.found) {
         setSpotted({ ...spotted });
       } else {

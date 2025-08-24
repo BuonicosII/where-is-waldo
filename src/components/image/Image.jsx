@@ -44,16 +44,14 @@ export default function Image() {
   });
 
   useEffect(() => {
-    () => {
-      if (
-        !gameover &&
-        spotted.one.length === 2 &&
-        spotted.two.length === 2 &&
-        spotted.three.length === 2
-      ) {
-        setGameover(new Date());
-      }
-    };
+    if (
+      !gameover &&
+      spotted.one.length === 2 &&
+      spotted.two.length === 2 &&
+      spotted.three.length === 2
+    ) {
+      setGameover(new Date());
+    }
   }, [spotted, gameover]);
 
   function coordinates(e) {
@@ -65,10 +63,9 @@ export default function Image() {
     ]);
   }
 
-  console.log(gameover);
-
   return (
     <>
+      <Timer gameover={gameover} setGameover={setGameover} />
       <main id={style.mainImg}>
         <div id={style.imageHolder}>
           <img
@@ -96,6 +93,30 @@ export default function Image() {
               className={style.spottedDiv}
             ></div>
           )}
+          {spotted.two.length === 2 && (
+            <div
+              style={{
+                left: `${(spotted.two[0] * size[0]) / 2000 - size[1] / 20}px`,
+                top: `${(spotted.two[1] * size[1]) / 1235.35 - size[1] / 20}px`,
+                width: `${size[1] / 10}px`,
+                height: `${size[1] / 10}px`,
+              }}
+              className={style.spottedDiv}
+            ></div>
+          )}
+          {spotted.three.length === 2 && (
+            <div
+              style={{
+                left: `${(spotted.three[0] * size[0]) / 2000 - size[1] / 20}px`,
+                top: `${
+                  (spotted.three[1] * size[1]) / 1235.35 - size[1] / 20
+                }px`,
+                width: `${size[1] / 10}px`,
+                height: `${size[1] / 10}px`,
+              }}
+              className={style.spottedDiv}
+            ></div>
+          )}
         </div>
         {gameover && (
           <div className={style.gameover}>
@@ -108,7 +129,6 @@ export default function Image() {
           </div>
         )}
       </main>
-      <Timer gameover={gameover} setGameover={setGameover} />
     </>
   );
 }
