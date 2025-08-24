@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Image from "./components/image/Image";
 import StartUp from "./components/startUp/StartUp";
+import BestScores from "./components/bestScores/BestScores";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -25,7 +26,7 @@ export default function Router() {
       path: "/finish",
       element: (
         <>
-          <p>End game</p>
+          <BestScores />
         </>
       ),
     },

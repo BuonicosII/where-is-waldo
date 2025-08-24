@@ -1,0 +1,90 @@
+#mainDiv {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 121, 0, 0.5);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#scores {
+  grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#gameScoreHolder {
+  grid-area: 1 / 2 / 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#saveGameHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 2vh;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin: 2vh;
+  width: 50%;
+}
+
+.inputHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.inputHolder input {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  height: 30px;
+  min-width: 100px;
+  padding: 7px;
+}
+
+#mainDiv button {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  height: 40px;
+  min-width: 100px;
+}
+
+.entry,
+#gameScore {
+  background-color: white;
+  margin: 2vh;
+  font-size: 45px;
+  padding: 2vh;
+  border-radius: 10px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+@media screen and (max-width: 800px) {
+  #mainDiv {
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content min-content;
+  }
+
+  #saveGameHolder,
+  .entry,
+  #gameScore {
+    width: 75%;
+    font-size: 20px;
+  }
+
+  #gameScoreHolder {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  #scores {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+}
