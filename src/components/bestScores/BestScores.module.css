@@ -29,7 +29,6 @@
   border-radius: 10px;
   border: 2px solid black;
   margin: 2vh;
-  width: 50%;
 }
 
 .inputHolder {
@@ -55,6 +54,23 @@
   min-width: 100px;
 }
 
+#mainDiv button:hover {
+  cursor: pointer;
+}
+
+.popupHolder {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.404);
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+}
+
 .entry,
 #gameScore {
   background-color: white;
@@ -68,13 +84,17 @@
   width: 50%;
 }
 
+.buttonHolder {
+  display: flex;
+  gap: 2vh;
+}
+
 @media screen and (max-width: 800px) {
   #mainDiv {
     grid-template-columns: 1fr;
     grid-template-rows: min-content min-content min-content;
   }
 
-  #saveGameHolder,
   .entry,
   #gameScore {
     width: 75%;
