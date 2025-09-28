@@ -20,9 +20,13 @@ export default function Selector({ x, y, size, spotted, setSpotted }) {
     };
 
     try {
-      const json = await fetch("http://localhost:3000/", {
-        method: "POST",
+      const json = await fetch("http://localhost:3000/subject", {
+        method: "PUT",
         body: JSON.stringify(userSelection),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
       });
 
       const res = await json.json();

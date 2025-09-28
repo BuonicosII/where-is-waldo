@@ -2,16 +2,19 @@ import { useState, useEffect } from "react";
 import style from "./Image.module.css";
 import Selector from "../selector/Selector";
 import Timer from "../timer/Timer";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export default function Image() {
+  const game = useLoaderData();
   const [x, getX] = useState(null);
   const [y, getY] = useState(null);
   const [size, getSize] = useState([]);
   const [spotted, setSpotted] = useState({
-    one: [],
-    two: [],
-    three: [],
+    one: game.subjectOne ? [game.subjectOne.x, game.subjectOne.y] : [],
+    two: game.subjectTwo ? [(game.subjectTwo.x, game.subjectTwo.y)] : [],
+    three: game.subjectThree
+      ? [(game.subjectThree.x, game.subjectThree.y)]
+      : [],
   });
   const [gameover, setGameover] = useState(null);
 
@@ -65,7 +68,11 @@ export default function Image() {
 
   return (
     <>
-      <Timer gameover={gameover} setGameover={setGameover} />
+      <Timer
+        gameover={gameover}
+        setGameover={setGameover}
+        startDate={game.startDate}
+      />
       <main id={style.mainImg}>
         <div id={style.imageHolder}>
           <img

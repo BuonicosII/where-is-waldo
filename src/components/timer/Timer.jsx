@@ -3,9 +3,12 @@ import PropTypes from "prop-types";
 import { DateTime, Duration } from "luxon";
 import { useState, useEffect } from "react";
 
-export default function Timer({ gameover, setGameover }) {
-  const [time, setTime] = useState(0);
-
+export default function Timer({ gameover, setGameover, startDate }) {
+  const [time, setTime] = useState(() => {
+    const date1 = new Date(startDate).getTime();
+    const date2 = new Date().getTime();
+    return Math.round((date2 - date1) / 1000);
+  });
   useEffect(() => {
     const interval = setTimeout(() => {
       if (!gameover && time < 900) {

@@ -4,12 +4,26 @@ import style from "./StartUp.module.css";
 export default function StartUp() {
   const navigate = useNavigate();
 
-  function startNewGame(e) {
+  async function startNewGame(e) {
     e.preventDefault();
 
-    //add backend stuff
+    try {
+      const json = await fetch("http://localhost:3000/game", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
 
-    navigate("/game");
+      const res = await json.json();
+
+      if (typeof res === "string") {
+        console.log(res);
+      } else {
+        localStorage.setItem("token", JSON.stringify(res.token));
+        navigate("/game");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
