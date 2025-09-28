@@ -5,7 +5,15 @@ import subject1 from "../../assets/subject1.png";
 import subject2 from "../../assets/subject2.png";
 import subject3 from "../../assets/subject3.png";
 
-export default function Selector({ x, y, size, spotted, setSpotted }) {
+export default function Selector({
+  x,
+  getX,
+  y,
+  getY,
+  size,
+  spotted,
+  setSpotted,
+}) {
   const [button, setButton] = useState(null);
 
   async function formSubmit(e) {
@@ -33,17 +41,21 @@ export default function Selector({ x, y, size, spotted, setSpotted }) {
 
       //const res = { found: true, subject: button };
 
-      if (!res.found) {
+      if (res.message) {
         setSpotted({ ...spotted });
+        getX(null);
+        getY(null);
       } else {
-        if (res.subject === 1) {
+        if (res.num === 1) {
           setSpotted({ ...spotted, one: [res.x, res.y] });
-        } else if (res.subject === 2) {
+        } else if (res.num === 2) {
           setSpotted({ ...spotted, two: [res.x, res.y] });
-        } else if (res.subject === 3) {
+        } else if (res.num === 3) {
           setSpotted({ ...spotted, three: [res.x, res.y] });
         }
         setButton(null);
+        getX(null);
+        getY(null);
       }
     } catch (err) {
       console.log(err);
@@ -200,6 +212,8 @@ export default function Selector({ x, y, size, spotted, setSpotted }) {
 
 Selector.propTypes = {
   x: PropTypes.number,
+  getX: PropTypes.func,
   y: PropTypes.number,
+  getY: PropTypes.func,
   size: PropTypes.array,
 };

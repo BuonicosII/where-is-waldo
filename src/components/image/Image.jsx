@@ -83,7 +83,9 @@ export default function Image() {
           {y !== null && x !== null && (
             <Selector
               x={x}
+              getX={getX}
               y={y}
+              getY={getY}
               size={size}
               spotted={spotted}
               setSpotted={setSpotted}
