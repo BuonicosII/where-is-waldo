@@ -11,26 +11,31 @@ export default function Image() {
   const [size, getSize] = useState([]);
   const [spotted, setSpotted] = useState({
     one: game.subjectOne ? [game.subjectOne.x, game.subjectOne.y] : [],
-    two: game.subjectTwo ? [(game.subjectTwo.x, game.subjectTwo.y)] : [],
-    three: game.subjectThree
-      ? [(game.subjectThree.x, game.subjectThree.y)]
-      : [],
+    two: game.subjectTwo ? [game.subjectTwo.x, game.subjectTwo.y] : [],
+    three: game.subjectThree ? [game.subjectThree.x, game.subjectThree.y] : [],
   });
   const [gameover, setGameover] = useState(null);
 
   //mettere useMediaQuery e/o useEffect per far beccare al componente quando cambiano le dimensioni
   useEffect(() => {
-    const height = document.getElementById(`${style.imageHolder}`).scrollHeight;
-    const width = document.getElementById(`${style.imageHolder}`).scrollWidth;
-    getSize([width, height]);
+    console.log(
+      document.querySelector(`#${style.imageHolder} img`).scrollWidth,
+      document.querySelector(`#${style.imageHolder} img`).scrollHeight
+    );
+    getSize([
+      document.querySelector(`#${style.imageHolder} img`).scrollWidth,
+      document.querySelector(`#${style.imageHolder} img`).scrollHeight,
+    ]);
   }, []);
 
   useEffect(() => {
     function handleResize() {
-      const height = document.getElementById(
-        `${style.imageHolder}`
+      const height = document.querySelector(
+        `#${style.imageHolder} img`
       ).scrollHeight;
-      const width = document.getElementById(`${style.imageHolder}`).scrollWidth;
+      const width = document.querySelector(
+        `#${style.imageHolder} img`
+      ).scrollWidth;
       if (x) {
         getX((x * width) / size[0]);
       }
@@ -58,11 +63,15 @@ export default function Image() {
   }, [spotted, gameover]);
 
   function coordinates(e) {
+    console.log(
+      document.querySelector(`#${style.imageHolder} img`).scrollWidth,
+      document.querySelector(`#${style.imageHolder} img`).scrollHeight
+    );
     getX(x ? null : e.nativeEvent.offsetX);
     getY(y ? null : e.nativeEvent.offsetY);
     getSize([
-      document.getElementById(`${style.imageHolder}`).scrollWidth,
-      document.getElementById(`${style.imageHolder}`).scrollHeight,
+      document.querySelector(`#${style.imageHolder} img`).scrollWidth,
+      document.querySelector(`#${style.imageHolder} img`).scrollHeight,
     ]);
   }
 
