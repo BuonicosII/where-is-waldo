@@ -18,10 +18,6 @@ export default function Image() {
 
   //mettere useMediaQuery e/o useEffect per far beccare al componente quando cambiano le dimensioni
   useEffect(() => {
-    console.log(
-      document.querySelector(`#${style.imageHolder} img`).scrollWidth,
-      document.querySelector(`#${style.imageHolder} img`).scrollHeight
-    );
     getSize([
       document.querySelector(`#${style.imageHolder} img`).scrollWidth,
       document.querySelector(`#${style.imageHolder} img`).scrollHeight,
@@ -58,15 +54,28 @@ export default function Image() {
       spotted.two.length === 2 &&
       spotted.three.length === 2
     ) {
-      setGameover(new Date());
+      const date = new Date();
+      (async () => {
+        try {
+          await fetch("http://localhost:3000/game/enddate", {
+            method: "PUT",
+            body: JSON.stringify({ endDate: date }),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${JSON.parse(
+                localStorage.getItem("token")
+              )}`,
+            },
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+      setGameover(date);
     }
   }, [spotted, gameover]);
 
   function coordinates(e) {
-    console.log(
-      document.querySelector(`#${style.imageHolder} img`).scrollWidth,
-      document.querySelector(`#${style.imageHolder} img`).scrollHeight
-    );
     getX(x ? null : e.nativeEvent.offsetX);
     getY(y ? null : e.nativeEvent.offsetY);
     getSize([

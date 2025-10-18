@@ -13,3 +13,11 @@ export async function getGame() {
     return null;
   }
 }
+
+export async function getTopGames() {
+  const gamesJson = await fetch("http://localhost:3000/game/top-games");
+
+  const topGames = await gamesJson.json();
+
+  return topGames;
+}

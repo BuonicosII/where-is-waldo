@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./BestScores.module.css";
+import { useLoaderData } from "react-router-dom";
 
 export default function BestScores() {
-  const game = { length: 900 };
-  const topGames = [
-    { id: 1, user: "AAA", length: 75 },
-    { id: 2, user: "BBB", length: 90 },
-  ];
+  const data = useLoaderData();
+
+  const game = data[0];
+  const topGames = data[1];
 
   const navigate = useNavigate();
 
@@ -20,22 +20,37 @@ export default function BestScores() {
   }
 
   function returnStart() {
-    if (game.length) {
-      //cancella localStorage
+    if (game && game.length) {
+      localStorage.removeItem("token");
     }
 
     navigate("/");
   }
 
-  function saveRecord(e) {
+  async function saveRecord(e) {
     e.preventDefault();
 
-    if (topGames.length < 10 || topGames[9].length > game.length) {
-      //aggiorna il record
-
-      //cancella localStorage
-
+    if (
+      (game && game.length && topGames.length < 10) ||
+      topGames[9].length > game.length
+    ) {
+      try {
+        await fetch("http://localhost:3000/game/player", {
+          method: "PUT",
+          body: JSON.stringify({ name: name }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("token")
+            )}`,
+          },
+        });
+      } catch (err) {
+        console.log(err);
+      }
       setOpen(false);
+      localStorage.removeItem("token");
+      navigate("/");
     }
   }
 
@@ -46,18 +61,19 @@ export default function BestScores() {
           return (
             <div key={game.id} className={style.entry}>
               <span>
-                {index + 1}. {game.user}
+                {index + 1}. {game.player}
               </span>
               <span>
-                Time: {("0" + Math.floor(game.length / 60)).slice(-2)}:
-                {("0" + (game.length % 60)).slice(-2)}
+                Time:{" "}
+                {("0" + Math.floor(Math.round(game.length) / 60)).slice(-2)}:
+                {("0" + (Math.round(game.length) % 60)).slice(-2)}
               </span>
             </div>
           );
         })}
       </div>
       <div id={style.gameScoreHolder}>
-        {game.length && (
+        {game && game.length && (
           <div id={style.gameScore}>
             <span>You</span>
             <span>
@@ -69,7 +85,8 @@ export default function BestScores() {
         )}
         <div className={style.buttonHolder}>
           <button onClick={returnStart}>Go to new game</button>
-          {game.length &&
+          {game &&
+            game.length &&
             (topGames.length < 10 || topGames[9].length > game.length) && (
               <button
                 onClick={() => {
@@ -97,7 +114,7 @@ export default function BestScores() {
                 </div>
               </form>
               <div className={style.buttonHolder}>
-                <button type="submit" form="newgame">
+                <button type="submit" form="savegame">
                   Save record
                 </button>
                 <button

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./StartUp.module.css";
 
 export default function StartUp() {
@@ -44,7 +44,9 @@ export default function StartUp() {
           <button type="submit" form="newgame">
             New game
           </button>
-          <button>See best scores</button>
+          <Link to="/finish">
+            <button>See best scores</button>
+          </Link>
         </div>
       </div>
     </main>
