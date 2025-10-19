@@ -30,6 +30,8 @@ export default function Router() {
 
         if (!data) {
           return redirect("/");
+        } else if (data.endDate) {
+          return redirect("/finish");
         }
 
         return data;
