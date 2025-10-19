@@ -84,7 +84,7 @@ export default function BestScores() {
           </div>
         )}
         <div className={style.buttonHolder}>
-          <button onClick={returnStart}>Go to new game</button>
+          <button onClick={returnStart}>New game</button>
           {game &&
             game.length &&
             (topGames.length < 10 || topGames[9].length > game.length) && (
