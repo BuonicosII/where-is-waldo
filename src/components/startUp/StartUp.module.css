@@ -48,3 +48,21 @@
   border: 2px solid black;
   margin: 2vh;
 }
+
+@media screen and (max-width: 800px) {
+  .description {
+    width: 100%;
+    margin: 2vh;
+  }
+
+  #mainDiv h1 {
+    font-size: 4.5vh;
+  }
+
+  .buttonHolder {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2vh;
+  }
+}
