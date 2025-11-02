@@ -1,6 +1,6 @@
 #mainDiv {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgba(0, 121, 0, 0.5);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -106,6 +106,22 @@
   .entry,
   #gameScore {
     width: 75%;
+    font-size: 20px;
+  }
+
+  #gameScoreHolder {
+    margin: 2vh;
+    margin-bottom: 4vh;
+  }
+
+  .buttonHolder {
+    display: flex;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  #mainDiv button {
+    width: auto;
     font-size: 20px;
   }
 
