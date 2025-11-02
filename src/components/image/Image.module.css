@@ -3,7 +3,7 @@
   width: 100%;
   height: min-content;
   max-width: 2000px;
-  min-width: 1024px;
+  min-width: 1500px;
   margin: 0 auto;
 }
 
@@ -59,8 +59,15 @@
 
 .gameover button {
   border: 2px solid black;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: white;
-  height: 40px;
-  width: 100px;
+  width: 300px;
+  min-width: 100px;
+  padding: 2vh;
+  margin: 2vh;
+  font-size: 2.5vh;
+}
+
+.gameover button:hover {
+  cursor: pointer;
 }
